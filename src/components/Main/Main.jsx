@@ -4,7 +4,7 @@ import { assets } from "../../assets/assets";
 import { Context } from '../../context/context';
 import { useContext } from "react";
 const Main = () => {
-  const {onSent,recentPrompt,showResult,loading,resultData,setInput,input} = useContext(Context);
+  const {onSent,recentPrompts,showResult,loading,resultData,setInput,input} = useContext(Context);
   return (
     <div className='main'>
       <div className='nav'>
@@ -39,7 +39,23 @@ const Main = () => {
         </div>
         </>:
         <div className = "result">
-          
+           <div className="result-title">
+            <img src={assets.user_icon} alt="" />
+            <p>{recentPrompts}</p>
+           </div>
+          <div className="result-data">
+            <img src={assets.gemini_icon} alt="" />
+            {
+              loading?
+              <div className="loader">
+                <hr />
+                <hr />
+                <hr />
+              </div>
+              :<p dangerouslySetInnerHTML={{__html:resultData}}></p>
+            }
+            
+          </div>
           </div>}
         
         <div className='main-bottom'>
